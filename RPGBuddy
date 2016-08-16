@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+var argv = require('yargs').argv;
+var opn = require('opn');
+var YAML = require('yamljs');
+
+
+
+console.log("RPG Buddy");
+
+opts = loadOptions();
+
+if(opts.debug) console.log("Running in debug mode.");
+
+
+var modules = {}
+
+
+loadGit(opts, modules, function(git){
+    modules["git"] = git;
+    if(opts.debug) console.log("Loaded Git.");
+
+    finishedPreload();
+});
+
+function finishedPreload(){
+    console.log("Starting web server.");
+    server(opts, modules); 
+    ready(opts);
+}
+
+function loadOptions(){
+    
+    var yaml = YAML.load('config.yml');
+
+    var opts = {
+        version: "0.3",
+        debug: argv.debug || yaml.debug || false,
+        host: argv.host || yaml.host ||  "localhost",
+        port: argv.port || yaml.port || 8000,
+        
+        //if the host is not 0.0.0.0 we should set the url to localhost
+        url: (argv.host !== undefined && argv.host!=="0.0.0.0")?argv.host:"localhost",
+
+        // should we open a browser
+        headed: argv.headed || false,
+        data: argv.data || "./data",
+        cache: argv.cache || "./cache",
+
+        //how often we should make a checkpoint automatically
+        checkpoint: argv.checkpoint || 60
+    }
+
+    return opts;
+}
+
+
+function loadGit(opts, modules, callback){
+    require("./lib/git.js")(opts, modules, callback);
+}
+
+function ready(opts){
+    if(opts.headed){
+        console.log("Launching browser."); 
+        var url = "http://" + opts["url"] + ":" + opts["port"];
+        console.log("Opening: " + url + ".")
+        opn(url)
+    }
+}
