@@ -3,29 +3,24 @@
 var argv = require('yargs').argv;
 var opn = require('opn');
 var YAML = require('yamljs');
+var q = require('q');
 
-
-
-console.log("RPG Buddy");
-
-opts = loadOptions();
-
-if(opts.debug) console.log("Running in debug mode.");
-
-
+var opts = {}
 var modules = {}
 
 
-loadGit(opts, modules, function(git){
-    modules["git"] = git;
-    if(opts.debug) console.log("Loaded Git.");
+q.fcall(loadOptions)
+.then(function() { if (opts.debug) console.log("Running in debug mode.") })
+.then(loadGit)
+.then(loadServer)
+.then(finishedPreload)
+.done();
 
-    finishedPreload();
-});
+
 
 function finishedPreload(){
     console.log("Starting web server.");
-    server(opts, modules); 
+    modules.server(opts, modules); 
     ready(opts);
 }
 
@@ -33,7 +28,7 @@ function loadOptions(){
     
     var yaml = YAML.load('config.yml');
 
-    var opts = {
+    opts = {
         version: "0.3",
         debug: argv.debug || yaml.debug || false,
         host: argv.host || yaml.host ||  "localhost",
@@ -51,12 +46,19 @@ function loadOptions(){
         checkpoint: argv.checkpoint || 60
     }
 
-    return opts;
 }
 
 
-function loadGit(opts, modules, callback){
-    require("./lib/git.js")(opts, modules, callback);
+function loadGit(){
+    var git = require("./lib/git.js")(opts, modules);
+    modules["git"] = git;
+    if(opts.debug) console.log("Loaded Git.");
+}
+
+function loadServer(){
+    var server = require('./lib/server.js');
+    modules.server = server;
+    if(opts.debug) console.log('Loaded Server.');
 }
 
 function ready(opts){
