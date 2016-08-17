@@ -12,6 +12,7 @@ var modules = {}
 q.fcall(loadOptions)
 .then(function() { if (opts.debug) console.log("Running in debug mode.") })
 .then(loadGit)
+.then(loadNotes)
 .then(loadServer)
 .then(finishedPreload)
 .done();
@@ -51,8 +52,14 @@ function loadOptions(){
 
 function loadGit(){
     var git = require("./lib/git.js")(opts, modules);
-    modules["git"] = git;
+    modules.git = git;
     if(opts.debug) console.log("Loaded Git.");
+}
+
+function loadNotes(){
+    var notes = require('./lib/notes.js')(opts, modules);
+    modules.notes = notes;
+    if(opts.debug) console.log('Loaded Notes');
 }
 
 function loadServer(){
