@@ -1,0 +1,155 @@
+/* app css stylesheet */
+
+.header {
+    /*background-color: #046C8F;*/
+    background-color: #FFF;
+    color: #000;
+}
+
+.menu {
+  list-style: none;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  text-align: left;
+}
+
+/*
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+*/
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+
+/* mana curve */
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.fade {
+  line-height: 20px;
+  opacity: 1;
+}
+
+.fade.ng-hide-add, .fade.ng-hide-remove {
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+}
+
+.fade.ng-hide {
+  line-height: 0;
+  opacity: 0;
+}
+
+
+/*
+.fade.ng-animate {
+      transition: linear all 500ms;
+}
+
+.fade.ng-hide {
+        opacity:0;
+}
+
+.fade.ng-hide-remove
+.fade.ng-hide-add{
+    display: block !important;
+}
+
+.fade.nd-hide-add
+.fade.ng-hide-remove{
+    transition all linear 1s;
+}
+*/
+
+.ui-view-container {
+  position: relative;
+  height: 300px;
+}
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition:all .5s ease-in-out;
+    -moz-transition:all .5s ease-in-out;
+    -o-transition:all .5s ease-in-out;
+    transition:all .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+  transform:rotateY(180deg);
+/*
+  -webkit-transform:scale3d(0.5, 0.5, 0.5);
+  -moz-transform:scale3d(0.5, 0.5, 0.5);
+  transform:scale3d(0.5, 0.5, 0.5);
+*/
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+  transform:rotateY(0deg);
+/*
+  -webkit-transform:scale3d(1, 1, 1);
+  -moz-transform:scale3d(1, 1, 1);
+  transform:scale3d(1, 1, 1);
+*/
+}
+
+[ui-view].ng-leave {
+  opacity: 1; 
+  transform:rotateY(0deg);
+/*
+  -webkit-transform:translate3d(0, 0, 0);
+  -moz-transform:translate3d(0, 0, 0);
+  transform:translate3d(0, 0, 0);
+*/
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+  transform:rotateY(180deg);
+/*
+  -webkit-transform:translate3d(100px, 0, 0);
+  -moz-transform:translate3d(100px, 0, 0);
+  transform:translate3d(100px, 0, 0);
+*/
+}

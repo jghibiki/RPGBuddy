@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="rpgBuddy" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="rpgBuddy" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="rpgBuddy" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="rpgBuddy" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Magic Buddy</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css ">
+  <link rel="stylesheet" href="bower_components/angular-dragula/dist/dragula.min.css">
+  <link rel="stylesheet" href="css/magic-font.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body layout="row">
+    <md-sidenav 
+         class="md-sidenav-left"
+         md-is-locked-open="$mdMedia('gt-md')"
+         md-disable-backdrop
+         md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <div class="md-toolbar-tools">
+                <h1>RPG Buddy</h1>
+            </div>
+        </md-toolbar>
+
+        <md-content layout-padding ng-controller="NavigationCtrl">
+            <md-list>
+                <md-list-item>
+                    <span ui-sref="files">Files</span>
+                </md-list-item>
+                <md-list-item>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-content layout="column"   flex>
+        <script type="text/ng-template" id="loader-template.html">
+            <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(255,255,255,0.7);" layout="row" layout-align="center center">
+                <div>
+                    <md-progress-circular md-mode="indeterminate" md-diameter="100"/></md-progress-circular>
+                </div>
+            </div>
+        </script>
+         <span ui-view bs-loading-overlay flex="none"></span>
+         <div flex></div>
+
+        <div layout-padding layout-align="bottom center" flex="none">
+          <div style="text-align: center">RPG Buddy: v<span app-version></span> Copyright 2016 Jordan Goetze</div>
+        </div>
+    </md-content>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-dragula/dist/angular-dragula.js"></script>
+  <script src="bower_components/angular-loading-overlay/dist/angular-loading-overlay.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+  <script src="app.js"></script>
+  <script src="home/home.controller.js"></script>
+  <script src="navigation/navigation.controller.js"></script>
+  <script src="git/git.module.js"></script>
+  <script src="git/git.controller.js"></script>
+  <script src="git/git.service.js"></script>
+  <script src="socket/socket.module.js"></script>
+  <script src="socket/socket.service.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+  <script src="bower_components/angular-socket-io/socket.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
