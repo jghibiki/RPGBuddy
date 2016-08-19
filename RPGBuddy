@@ -12,6 +12,8 @@ var modules = {}
 q.fcall(loadOptions)
 .then(function() { if (opts.debug) console.log("Running in debug mode.") })
 .then(loadGit)
+.then(loadFiles)
+.then(loadUsers)
 .then(loadNotes)
 .then(loadServer)
 .then(finishedPreload)
@@ -60,6 +62,18 @@ function loadNotes(){
     var notes = require('./lib/notes.js')(opts, modules);
     modules.notes = notes;
     if(opts.debug) console.log('Loaded Notes');
+}
+
+function loadFiles(){
+    var file = require('./lib/file.js')(opts, modules);
+    modules.file = file;
+    if(opts.debug) console.log('Loaded File');
+}
+
+function loadUsers(){
+    var users = require('./lib/users.js')(opts, modules);
+    modules.users = users;
+    if(opts.debug) console.log('Loaded Users');
 }
 
 function loadServer(){
