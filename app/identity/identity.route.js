@@ -13,12 +13,20 @@ angular.module("rpgBuddy.identity")
        controllerAs: 'vm'
    });
 }])
-.run(["$state", "$identity", "$rootScope", function($state, $identity, $rootScope){
+.run(["$state", "$identity", "$rootScope", "$mdDialog", function($state, $identity, $rootScope, $mdDialog){
 
     $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){
 
         if($identity.user == null && toState.name !== "identity"){
+			$mdDialog.show(
+			  $mdDialog.alert()
+				.clickOutsideToClose(true)
+				.title('Please Log In First')
+				.textContent("Redirecting to login.")
+				.ariaLabel('Login Redirect Alert')
+				.ok('Ok')
+			);
             event.preventDefault();
             $state.go("identity");
         }

@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('rpgBuddy.notes')
+angular.module('rpgBuddy.files')
 
 
-.controller('EditNotesCtrl', EditNotesCtrl);
+.controller('EditFilesCtrl', EditFilesCtrl);
 
-EditNotesCtrl.$inject = [
+EditFilesCtrl.$inject = [
     "$scope",
     "socket",
     "$state",
@@ -13,16 +13,16 @@ EditNotesCtrl.$inject = [
     "$window",
 	"$mdDialog"
 ]
-function EditNotesCtrl($scope, socket, $state, $stateParams, $window, $mdDialog) {
+function EditFilesCtrl($scope, socket, $state, $stateParams, $window, $mdDialog) {
 
     $scope.data = "";
     $scope.fileName = null;
 	$scope.permissions = null;
     
-    if($state.current.name == "notes.new"){
+    if($state.current.name == "files.new"){
         $scope.fileName = "Untitled Note Sheet";
     }
-    else if($state.current.name == "notes.edit"){
+    else if($state.current.name == "files.edit"){
         $scope.fileName = $stateParams.file;
         //load file
     }

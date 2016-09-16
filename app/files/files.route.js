@@ -1,41 +1,38 @@
+
+
 'use strict';
 
-
-FilesRouteConfig.$inject = [
-    "$stateProvider",
-    "$urlRouterProvider"
-]
-
-angular.module('rpgBuddy.files', [])
-.config(FilesRouteConfig);
-
-function FilesRouteConfig($stateProvider, $urlRouterProvider){
-    $urlRouterProvider.when('/files', '/files/browse/~')
+angular.module('rpgBuddy.files')
+.config(['$stateProvider', function($stateProvider) {
 
   $stateProvider
     .state('files', {
-        template: '<div ui-view></div>',
-        config: {
-            abstract: true
-        }
-    }
-    .state('files.browse', {
-        url: '/files/browse/{path:.*}',
-        templateUrl: 'files/browser/browser.html'
-        controller: 'FileBrowserController',
-        controllerAs: 'vm'
+        url:'/files',
+        abstract: true,
+        template: '<div ui-view></div>'
     })
-    .state('files.view', {
-        url: '/files/view/{path:.*}',
-        templateUrl: 'files/viewer/viewer.html'
-        controller: 'FileViewerController',
+    .state('files.list', {
+        url: '/list',
+        templateUrl: 'files/list.files.html',
+        controller: 'ListFilesCtrl',
         controllerAs: 'vm'
     })
     .state('files.edit', {
-        url: '/files/edit/{path:.*}',
-        templateUrl: 'files/editor/editor.html',
-        controller: 'FileEditorController',
+        url: '/edit',
+        templateUrl: 'files/edit.files.html',
+        controller: 'EditFilesCtrl',
         controllerAs: 'vm'
-
     })
-}
+    .state('files.new', {
+        url: '/new',
+        templateUrl: 'files/edit.files.html',
+        controller: 'EditFilesCtrl',
+        controllerAs: 'vm'
+    })
+    .state('files.upload', {
+        url: '/upload',
+        templateUrl: 'files/upload.files.controller.html',
+        controller: 'UploadFilesCtrl',
+        controllerAs: 'vm'
+    })
+}])
