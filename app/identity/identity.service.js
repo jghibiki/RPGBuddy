@@ -34,6 +34,20 @@ function IdentityService($q, socket, $mdDialog){
 		identityService.promise = null;
     });
 
+    identityService.register = function(username, pin){
+        if(identityService.promise == null){
+            identityService.promise = $q.defer();
+            socket.emit("user:add", {username: username, pin: pin});
+            return identityService.promise.promise;
+        }
+    };
+
+    socket.on("user:add::response", function(user){
+        identityService.user = user;
+		identityService.promise.resolve(user);
+		identityService.promise = null;
+    });
+
     return identityService;
 
 }
