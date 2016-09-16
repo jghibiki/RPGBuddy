@@ -1,22 +1,16 @@
 <md-toolbar class="md-hue-3">
-    <h1 class="md-toolbar-tools">Notes</h1>
+	<div class="md-toolbar-tools">
+		<span flex></span>
+		<h1>Files</h1>
+		<span flex></span>
+	</div>
 </md-toolbar>
 <md-list>
     <md-list-item>
-        <md-button flex ui-sref="notes.new">Add File</md-button>
+        <md-button flex ng-click="showNewFileDialog()">Add File</md-button>
     </md-list-item>
     <md-list-item>
         <md-button flex ui-sref="notes.list">View Files</md-button>
     </md-list-item>
 </md-list>
-<md-toolbar class="md-hue-3">
-    <h1 class="md-toolbar-tools">Uploads</h1>
-</md-toolbar>
-<md-list>
-    <md-list-item>
-        <md-button flex ui-sref="home">Upload File</md-button>
-    </md-list-item>
-    <md-list-item>
-        <md-button flex ui-sref="home">View Uploaded Files</md-button>
-    </md-list-item>
-</md-list>
+
