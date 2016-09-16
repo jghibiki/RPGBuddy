@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Magic Buddy</title>
+  <title>RPG Buddy</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="css/magic-font.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
+  <link href="//cdn.quilljs.com/1.0.3/quill.snow.css" rel="stylesheet">
+  <link href="//cdn.quilljs.com/1.0.3/quill.bubble.css" rel="stylesheet">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -27,18 +29,12 @@
          md-whiteframe="4">
         <md-toolbar class="md-theme-indigo">
             <div class="md-toolbar-tools">
-                <h1>RPG Buddy</h1>
+                <h1 ui-sref="home">RPG Buddy</h1>
             </div>
         </md-toolbar>
 
-        <md-content layout-padding ng-controller="NavigationCtrl">
-            <md-list>
-                <md-list-item>
-                    <span ui-sref="files">Files</span>
-                </md-list-item>
-                <md-list-item>
-                </md-list-item>
-            </md-list>
+        <md-content ng-controller="NavigationCtrl">
+            <navigation></navigation>
         </md-content>
     </md-sidenav>
     <md-content layout="column"   flex>
@@ -50,7 +46,7 @@
             </div>
         </script>
          <span ui-view bs-loading-overlay flex="none"></span>
-         <div flex></div>
+         <div flex style="height:100%"></div>
 
         <div layout-padding layout-align="bottom center" flex="none">
           <div style="text-align: center">RPG Buddy: v<span app-version></span> Copyright 2016 Jordan Goetze</div>
@@ -68,10 +64,22 @@
   <script src="bower_components/angular-dragula/dist/angular-dragula.js"></script>
   <script src="bower_components/angular-loading-overlay/dist/angular-loading-overlay.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="//cdn.quilljs.com/1.0.3/quill.min.js" type="text/javascript"></script>
+  <script src="bower_components/ngQuill/src/ng-quill.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
   <script src="app.js"></script>
   <script src="home/home.controller.js"></script>
+  <script src="notes/notes.module.js"></script>
+  <script src="notes/notes.list.controller.js"></script>
+  <script src="notes/notes.edit.controller.js"></script>
+  <script src="notes/notes.route.js"></script>
+  <script src="navigation/navigation.module.js"></script>
   <script src="navigation/navigation.controller.js"></script>
+  <script src="navigation/navigation.directive.js"></script>
+  <script src="identity/identity.module.js"></script>
+  <script src="identity/identity.route.js"></script>
+  <script src="identity/identity.service.js"></script>
+  <script src="identity/identity.controller.js"></script>
   <script src="git/git.module.js"></script>
   <script src="git/git.controller.js"></script>
   <script src="git/git.service.js"></script>

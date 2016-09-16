@@ -1,10 +1,22 @@
+<md-toolbar class="md-hue-3">
+    <h1 class="md-toolbar-tools">Notes</h1>
+</md-toolbar>
 <md-list>
     <md-list-item>
-            <a href=>
-                <md-button navTo="#/deck">Deck Builder</md-button>
-            </a>
+        <div ui-sref="notes.new">Add File</div>
     </md-list-item>
     <md-list-item>
-            <md-button navTo="#/collection">Collection Manager</md-button>
+        <div ui-sref="notes.list">View Files</div>
+    </md-list-item>
+</md-list>
+<md-toolbar class="md-hue-3">
+    <h1 class="md-toolbar-tools">Uploads</h1>
+</md-toolbar>
+<md-list>
+    <md-list-item>
+        <div ui-sref="home">Upload File</div>
+    </md-list-item>
+    <md-list-item>
+        <div ui-sref="home">View Uploaded Files</div>
     </md-list-item>
 </md-list>

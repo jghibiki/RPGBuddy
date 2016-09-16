@@ -1,0 +1,62 @@
+<div flex layout="column">
+	<md-toolbar class="md-menu-toolbar">
+		<div layout="row">
+			<md-toolbar-filler layout layout-align="center center">
+				<md-icon>chat</md-icon>
+			</md-toolbar-filler>
+
+			<div>
+                <h2 class="md-toolbar-tools">{{ fileName }}</h2>
+				 <md-menu-bar>
+				  <md-menu>
+					<button ng-click="$mdOpenMenu()">
+					  File
+					</button>
+					<md-menu-content>
+					  <md-menu-item>
+						<md-button>
+						  Share...
+						</md-button>
+					  </md-menu-item>
+					  <md-menu-divider></md-menu-divider>
+					  <md-menu-item>
+                          <md-button ui-sref="notes.new" target="_blank">New</md-button>
+					  </md-menu-item>
+					  <md-menu-item>
+						<md-button ng-click="save()">Save</md-button>
+                      </md-menu-item>
+					  <md-menu-item>
+						<md-button ng-click="rename()">
+						  Rename
+						</md-button>
+					  </md-menu-item>
+					  <md-menu-divider></md-menu-divider>
+					</md-menu-content>
+				  </md-menu>
+                  <md-menu>
+                      <button ng-click="$mdOpenMenu()">
+                          Edit
+                      </button>
+                      <md-menu-content>
+                         <md-menu-item>
+                            <md-button ng-click="undo()">Undo</md-button>
+                         </md-menu-item>
+                         <md-menu-item>
+                            <md-button ng-click="redo()">Redo</md-button>
+                         </md-menu-item>
+						  <md-menu-divider></md-menu-divider>
+                     </md-menu-content>
+                  </md-menu>
+				</menu-bar>
+			</div>
+	
+		</div>
+	</md-toolbar>
+
+    <md-card>
+        <md-card-content>
+                <!--<ng-quill-editor  ng-model="data" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image video" editor-required="true" required="" error-class="input-error" callback="editorCreated(editor, name)" style="height:500px"></ng-quill-editor>-->
+			<div id="editor-container" style="height:500px"></div>
+        </md-card-content>
+    </md-card>
+</div>

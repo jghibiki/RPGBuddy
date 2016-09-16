@@ -10,6 +10,8 @@ angular.module('rpgBuddy', [
   'rpgBuddy.home',
   'rpgBuddy.navigation',
   'rpgBuddy.version',
+  'rpgBuddy.notes',
+  'rpgBuddy.identity',
   'socket',
   'git'
 ])

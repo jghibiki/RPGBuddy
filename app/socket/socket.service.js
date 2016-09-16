@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('socket', [])
+angular.module('socket')
 .factory('socket', function (socketFactory) {
     var mySocket = socketFactory();
     mySocket.forward('error');
